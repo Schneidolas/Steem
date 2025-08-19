@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Dev-Steam</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <h1 class="logo">Minha Dev-Steam</h1>
+        <nav class="nav">
+            <button class="nav-button active" id="shop-btn">Loja</button>
+            <button class="nav-button" id="library-btn">Biblioteca</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <!-- Seção da Loja -->
+        <section id="shop-section" class="content-section active">
+            <div class="search-container">
+                <input type="text" id="search-bar" placeholder="Pesquisar jogos...">
+            </div>
+            <div class="shop-layout">
+                <aside id="search-sidebar" class="search-sidebar">
+                    <h3>Filtros</h3>
+                    <div id="tag-filters" class="tag-filters">
+                        <!-- Tags serão geradas aqui pelo JS -->
+                    </div>
+                    <button id="clear-filters-btn" class="clear-filters-btn">Limpar Filtros</button>
+                </aside>
+                <div id="game-list" class="game-list">
+                    <!-- Cards dos jogos serão injetados aqui pelo JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção da Biblioteca -->
+        <section id="library-section" class="content-section">
+            <h2>Meus Jogos Favoritos</h2>
+            <div class="library-actions">
+                <button id="export-favorites-btn" class="action-btn">Exportar Favoritos (.json)</button>
+                <input type="file" id="import-favorites-input" accept=".json" style="display: none;">
+                <button id="import-favorites-btn" class="action-btn">Importar Favoritos (.json)</button>
+            </div>
+            <div id="library-list" class="library-list">
+                <!-- Cards dos jogos favoritados serão injetados aqui pelo JS -->
+                <p id="empty-library-msg" class="empty-message">Sua biblioteca está vazia. Favorite alguns jogos na Loja!</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="data/games.js"></script> <!-- Carrega os dados dos jogos primeiro -->
+    <script src="script.js"></script>    <!-- Depois a lógica principal -->
+</body>
+</html>
