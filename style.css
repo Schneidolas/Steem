@@ -1,0 +1,299 @@
+/* Reset Básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1a202c; /* Cor de fundo escura */
+    color: #e2e8f0; /* Cor do texto clara */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header */
+.header {
+    background-color: #2d3748;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+    color: #4299e1; /* Cor azul marcante */
+    font-size: 1.8rem;
+}
+
+.nav-button {
+    background-color: transparent;
+    border: none;
+    color: #e2e8f0;
+    padding: 0.7rem 1.2rem;
+    margin-left: 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 5px;
+}
+
+.nav-button:hover {
+    background-color: #4a5568;
+}
+
+.nav-button.active {
+    background-color: #4299e1;
+    color: white;
+}
+
+/* Conteúdo Principal */
+.main-content {
+    flex-grow: 1;
+    padding: 1.5rem 2rem;
+}
+
+.content-section {
+    display: none; /* Esconde todas as seções por padrão */
+}
+
+.content-section.active {
+    display: block; /* Mostra a seção ativa */
+}
+
+/* Loja */
+.shop-layout {
+    display: flex;
+    gap: 2rem; /* Espaço entre a sidebar e a lista de jogos */
+}
+
+.search-container {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+#search-bar {
+    width: 100%;
+    max-width: 600px;
+    padding: 0.8rem 1rem;
+    border: 1px solid #4a5568;
+    border-radius: 5px;
+    background-color: #2d3748;
+    color: #e2e8f0;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#search-bar:focus {
+    border-color: #4299e1;
+}
+
+.search-sidebar {
+    background-color: #2d3748;
+    padding: 1.5rem;
+    border-radius: 8px;
+    width: 250px; /* Largura fixa da sidebar */
+    flex-shrink: 0;
+    height: fit-content; /* Para não ocupar a altura total */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: none; /* Escondido por padrão, aparece ao clicar na barra de pesquisa */
+}
+
+.search-sidebar.active {
+    display: block;
+}
+
+.search-sidebar h3 {
+    color: #4299e1;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.tag-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.tag-button {
+    background-color: #4a5568;
+    color: #e2e8f0;
+    padding: 0.4rem 0.8rem;
+    border: none;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.tag-button:hover {
+    background-color: #5a67d8; /* Um tom de roxo para hover */
+}
+
+.tag-button.selected {
+    background-color: #4299e1; /* Azul quando selecionado */
+    color: white;
+}
+
+.clear-filters-btn {
+    background-color: #e53e3e; /* Vermelho para limpar */
+    color: white;
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+}
+
+.clear-filters-btn:hover {
+    background-color: #c53030;
+}
+
+.game-list, .library-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Colunas responsivas */
+    gap: 1.5rem;
+    flex-grow: 1;
+}
+
+.game-card {
+    background-color: #2d3748;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+.game-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 1px solid #4a5568;
+}
+
+.game-info {
+    padding: 1rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.game-info h3 {
+    font-size: 1.3rem;
+    color: #4299e1;
+    margin-bottom: 0.5rem;
+}
+
+.game-info p {
+    font-size: 0.9rem;
+    color: #cbd5e0;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+    max-height: 60px; /* Limita a altura da descrição */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.game-tags {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.game-tags span {
+    background-color: #4a5568;
+    color: #a0aec0;
+    padding: 0.2rem 0.6rem;
+    border-radius: 10px;
+    font-size: 0.75rem;
+}
+
+
+.game-card-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: auto; /* Empurra os botões para baixo */
+}
+
+.action-btn, .favorite-btn {
+    flex: 1;
+    background-color: #4299e1;
+    color: white;
+    padding: 0.8rem 1rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none; /* Para o link "Abrir" */
+    text-align: center;
+}
+
+.action-btn:hover {
+    background-color: #3182ce;
+}
+
+.favorite-btn.favorited {
+    background-color: #e53e3e; /* Vermelho para desfavoritar */
+}
+.favorite-btn.favorited:hover {
+    background-color: #c53030;
+}
+
+/* Biblioteca */
+.library-actions {
+    margin-bottom: 1.5rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.library-actions .action-btn {
+    background-color: #4a5568;
+    color: #e2e8f0;
+}
+.library-actions .action-btn:hover {
+    background-color: #5a67d8;
+}
+
+.empty-message {
+    text-align: center;
+    color: #a0aec0;
+    font-style: italic;
+    padding: 2rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .main-content {
+        padding: 1rem;
+    }
+    .shop-layout {
+        flex-direction: column;
+    }
+    .search-sidebar {
+        width: 100%; /* Sidebar ocupa toda a largura em telas menores */
+    }
+    .game-list, .library-list {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
