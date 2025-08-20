@@ -1,3 +1,22 @@
+/* Importa uma fonte similar à da Steam (opcional, pode remover se preferir padrão do sistema) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* Variáveis de cores e tamanhos inspiradas na Steam */
+:root {
+    --steam-dark-bg: #1B2838; /* Fundo principal escuro */
+    --steam-header-bg: #171A21; /* Fundo do cabeçalho, um pouco mais escuro */
+    --steam-card-bg: #212C3D; /* Fundo dos cards, levemente mais claro que o fundo principal */
+    --steam-blue-accent: #66C0F4; /* Azul de destaque (links, títulos) */
+    --steam-green-btn: #5C7E10; /* Verde do botão "Jogar/Abrir" */
+    --steam-green-btn-hover: #759A21; /* Verde do botão hover */
+    --steam-text-light: #E0E6EB; /* Texto claro */
+    --steam-text-gray: #B0B0B0; /* Texto cinza secundário */
+    --steam-border-color: #313C4B; /* Cor de borda sutil */
+    --steam-shadow: rgba(0, 0, 0, 0.4); /* Sombra sutil */
+    --steam-red-remove: #B52F2F; /* Vermelho para remover/desfavoritar */
+    --steam-red-remove-hover: #D03B3B;
+}
+
 /* Reset Básico */
 * {
     box-sizing: border-box;
@@ -6,54 +25,78 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #1a202c; /* Cor de fundo escura */
-    color: #e2e8f0; /* Cor do texto clara */
+    font-family: 'Inter', sans-serif; /* Usando a fonte Inter */
+    background-color: var(--steam-dark-bg);
+    color: var(--steam-text-light);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-/* Header */
+/* Header (Cabeçalho) */
 .header {
-    background-color: #2d3748;
+    background-color: var(--steam-header-bg);
     padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 10px var(--steam-shadow);
+    border-bottom: 1px solid var(--steam-border-color);
 }
 
 .logo {
-    color: #4299e1; /* Cor azul marcante */
+    color: var(--steam-blue-accent);
     font-size: 1.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav {
+    display: flex;
+    gap: 0.5rem;
 }
 
 .nav-button {
     background-color: transparent;
     border: none;
-    color: #e2e8f0;
+    color: var(--steam-text-gray);
     padding: 0.7rem 1.2rem;
-    margin-left: 1rem;
     font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    border-radius: 5px;
+    transition: color 0.2s, background-color 0.2s, border-bottom 0.2s;
+    position: relative;
+    overflow: hidden; /* Para o efeito de sublinhado */
 }
 
 .nav-button:hover {
-    background-color: #4a5568;
+    color: var(--steam-blue-accent);
 }
 
 .nav-button.active {
-    background-color: #4299e1;
-    color: white;
+    color: var(--steam-blue-accent);
+    font-weight: 600;
 }
+
+.nav-button.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--steam-blue-accent);
+    border-radius: 2px 2px 0 0;
+}
+
 
 /* Conteúdo Principal */
 .main-content {
     flex-grow: 1;
     padding: 1.5rem 2rem;
+    max-width: 1200px; /* Limita a largura do conteúdo */
+    margin: 0 auto; /* Centraliza */
+    width: 100%;
 }
 
 .content-section {
@@ -67,40 +110,44 @@ body {
 /* Loja */
 .shop-layout {
     display: flex;
-    gap: 2rem; /* Espaço entre a sidebar e a lista de jogos */
+    gap: 2rem;
+    flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
 }
 
 .search-container {
     margin-bottom: 1.5rem;
-    text-align: center;
+    display: flex; /* Para centralizar ou alinhar a barra de pesquisa */
+    justify-content: center;
 }
 
 #search-bar {
     width: 100%;
     max-width: 600px;
     padding: 0.8rem 1rem;
-    border: 1px solid #4a5568;
-    border-radius: 5px;
-    background-color: #2d3748;
-    color: #e2e8f0;
+    border: 1px solid var(--steam-border-color);
+    border-radius: 3px;
+    background-color: var(--steam-header-bg);
+    color: var(--steam-text-light);
     font-size: 1rem;
     outline: none;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 #search-bar:focus {
-    border-color: #4299e1;
+    border-color: var(--steam-blue-accent);
+    box-shadow: 0 0 0 1px var(--steam-blue-accent);
 }
 
 .search-sidebar {
-    background-color: #2d3748;
+    background-color: var(--steam-header-bg);
     padding: 1.5rem;
     border-radius: 8px;
-    width: 250px; /* Largura fixa da sidebar */
+    width: 250px;
     flex-shrink: 0;
-    height: fit-content; /* Para não ocupar a altura total */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    height: fit-content;
+    box-shadow: 0 0 10px var(--steam-shadow);
     display: none; /* Escondido por padrão, aparece ao clicar na barra de pesquisa */
+    border: 1px solid var(--steam-border-color);
 }
 
 .search-sidebar.active {
@@ -108,9 +155,11 @@ body {
 }
 
 .search-sidebar h3 {
-    color: #4299e1;
+    color: var(--steam-blue-accent);
     margin-bottom: 1rem;
     font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .tag-filters {
@@ -121,67 +170,71 @@ body {
 }
 
 .tag-button {
-    background-color: #4a5568;
-    color: #e2e8f0;
+    background-color: var(--steam-card-bg);
+    color: var(--steam-text-gray);
     padding: 0.4rem 0.8rem;
-    border: none;
-    border-radius: 15px;
+    border: 1px solid var(--steam-border-color);
+    border-radius: 3px;
     font-size: 0.9rem;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 
 .tag-button:hover {
-    background-color: #5a67d8; /* Um tom de roxo para hover */
+    background-color: #3A475A; /* Um pouco mais claro */
+    color: var(--steam-text-light);
 }
 
 .tag-button.selected {
-    background-color: #4299e1; /* Azul quando selecionado */
+    background-color: var(--steam-blue-accent);
     color: white;
+    border-color: var(--steam-blue-accent);
 }
 
 .clear-filters-btn {
-    background-color: #e53e3e; /* Vermelho para limpar */
+    background-color: var(--steam-red-remove);
     color: white;
     padding: 0.6rem 1rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 3px;
     cursor: pointer;
     font-size: 0.9rem;
-    transition: background-color 0.3s;
+    transition: background-color 0.2s;
 }
 
 .clear-filters-btn:hover {
-    background-color: #c53030;
+    background-color: var(--steam-red-remove-hover);
 }
 
 .game-list, .library-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Colunas responsivas */
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); /* Colunas responsivas */
     gap: 1.5rem;
     flex-grow: 1;
 }
 
 .game-card {
-    background-color: #2d3748;
+    background-color: var(--steam-card-bg);
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 10px var(--steam-shadow);
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
     display: flex;
     flex-direction: column;
+    border: 1px solid var(--steam-border-color);
 }
 
 .game-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px var(--steam-shadow);
+    background-color: #2F3D52; /* Levemente mais claro no hover */
 }
 
 .game-card img {
     width: 100%;
-    height: 180px;
+    height: 160px; /* Altura padrão para thumbs de jogos */
     object-fit: cover;
-    border-bottom: 1px solid #4a5568;
+    border-bottom: 1px solid var(--steam-border-color);
 }
 
 .game-info {
@@ -193,19 +246,22 @@ body {
 }
 
 .game-info h3 {
-    font-size: 1.3rem;
-    color: #4299e1;
+    font-size: 1.2rem;
+    color: var(--steam-blue-accent);
     margin-bottom: 0.5rem;
 }
 
 .game-info p {
-    font-size: 0.9rem;
-    color: #cbd5e0;
-    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    color: var(--steam-text-gray);
+    margin-bottom: 0.8rem;
     line-height: 1.4;
-    max-height: 60px; /* Limita a altura da descrição */
+    max-height: 55px; /* Limita a altura da descrição */
     overflow: hidden;
     text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limita a 3 linhas */
+    -webkit-box-orient: vertical;
 }
 
 .game-tags {
@@ -217,13 +273,12 @@ body {
 }
 
 .game-tags span {
-    background-color: #4a5568;
-    color: #a0aec0;
+    background-color: #313C4B; /* Cor de tag mais escura */
+    color: var(--steam-text-gray);
     padding: 0.2rem 0.6rem;
-    border-radius: 10px;
-    font-size: 0.75rem;
+    border-radius: 3px;
+    font-size: 0.7rem;
 }
-
 
 .game-card-actions {
     display: flex;
@@ -233,27 +288,35 @@ body {
 
 .action-btn, .favorite-btn {
     flex: 1;
-    background-color: #4299e1;
+    background-color: var(--steam-green-btn); /* Botão "Abrir" verde */
     color: white;
     padding: 0.8rem 1rem;
     border: none;
-    border-radius: 5px;
-    font-size: 1rem;
+    border-radius: 3px;
+    font-size: 0.9rem;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.2s;
     text-decoration: none; /* Para o link "Abrir" */
     text-align: center;
+    font-weight: 600;
 }
 
 .action-btn:hover {
-    background-color: #3182ce;
+    background-color: var(--steam-green-btn-hover);
+}
+
+.favorite-btn {
+    background-color: var(--steam-border-color); /* Favoritar é cinza */
+}
+.favorite-btn:hover {
+    background-color: #4B5A70; /* Hover no cinza */
 }
 
 .favorite-btn.favorited {
-    background-color: #e53e3e; /* Vermelho para desfavoritar */
+    background-color: var(--steam-red-remove); /* Vermelho para desfavoritar */
 }
 .favorite-btn.favorited:hover {
-    background-color: #c53030;
+    background-color: var(--steam-red-remove-hover);
 }
 
 /* Biblioteca */
@@ -261,21 +324,40 @@ body {
     margin-bottom: 1.5rem;
     display: flex;
     gap: 1rem;
+    justify-content: flex-end; /* Alinha botões à direita */
+    border-bottom: 1px solid var(--steam-border-color);
+    padding-bottom: 1rem;
 }
 
 .library-actions .action-btn {
-    background-color: #4a5568;
-    color: #e2e8f0;
+    background-color: var(--steam-card-bg); /* Botões de ação da biblioteca cinzas */
+    color: var(--steam-text-light);
+    border: 1px solid var(--steam-border-color);
+    padding: 0.6rem 1rem; /* Um pouco menores */
 }
 .library-actions .action-btn:hover {
-    background-color: #5a67d8;
+    background-color: #2F3D52;
+}
+
+h2 {
+    color: var(--steam-blue-accent);
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    border-bottom: 2px solid var(--steam-border-color);
+    padding-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .empty-message {
     text-align: center;
-    color: #a0aec0;
+    color: var(--steam-text-gray);
     font-style: italic;
     padding: 2rem;
+    background-color: var(--steam-card-bg);
+    border-radius: 8px;
+    margin-top: 2rem;
+    border: 1px solid var(--steam-border-color);
 }
 
 /* Responsividade */
@@ -289,11 +371,21 @@ body {
     }
     .shop-layout {
         flex-direction: column;
+        align-items: center; /* Centraliza a sidebar e a lista */
     }
     .search-sidebar {
         width: 100%; /* Sidebar ocupa toda a largura em telas menores */
     }
     .game-list, .library-list {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Um pouco menor para mobile */
+        width: 100%; /* Ocupa a largura total disponível */
+    }
+    .game-card {
+        margin: 0 auto; /* Centraliza cards individualmente */
+        max-width: 300px; /* Limita a largura em telas muito pequenas */
+    }
+    .library-actions {
+        flex-direction: column;
+        gap: 0.8rem;
     }
 }
